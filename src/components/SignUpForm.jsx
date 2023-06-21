@@ -1,18 +1,17 @@
 import { useFormik } from "formik";
 
+const initialValues = { name: "", email: "", password: "" };
+const onSubmit = (values) => console.log(values);
+
 const SignUpForm = () => {
   const formik = useFormik({
-    initialValues: { name: "", email: "", password: "" },
+    initialValues,
+    onSubmit,
   });
-
-  const submitHandler = (e) => {
-    console.log("submit");
-    e.preventDefault();
-  };
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={formik.handleSubmit}>
         <div className="formControl">
           <label>Name</label>
           <input
