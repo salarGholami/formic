@@ -49,3 +49,7 @@ button:hover {
 .error {
   color: rgb(255, 0, 38);
 }
+
+input[type="number"] {
+  appearance: textfield;
+}
