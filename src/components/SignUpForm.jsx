@@ -1,6 +1,15 @@
 import { useFormik } from "formik";
+import { useState } from "react";
 import { object, ref, string } from "yup";
 
+const savedData = {
+  name: "salar",
+  email: "salargholami021@gmail.com",
+  phoneNumber: "09389525194",
+  password: "13730912@Salar",
+  passwordConfirm: "13730912@Salar",
+  gender: "0",
+};
 // 1.mange state
 const initialValues = {
   name: "",
@@ -35,11 +44,14 @@ const validationSchema = object({
 });
 
 const SignUpForm = () => {
+  const [formValues, setFormValues] = useState(null);
+
   const formik = useFormik({
-    initialValues,
+    initialValues: formValues || initialValues,
     onSubmit,
     validationSchema,
     validateOnMount: true,
+    enableReinitialize: true,
   });
 
   return (
@@ -130,6 +142,9 @@ const SignUpForm = () => {
             <div className="error">{formik.errors.gender}</div>
           )}
         </div>
+
+        <button onClick={() => setFormValues(savedData)}>load data</button>
+
         <button type="submit" disabled={!formik.isValid}>
           submit
         </button>
