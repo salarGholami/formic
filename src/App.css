@@ -10,7 +10,9 @@ label {
   font-weight: 800;
 }
 
-input {
+input[type="text"],
+input[type="number"],
+input[type="email"] {
   width: 400px;
   padding: 13px 22px;
   display: block;
@@ -26,6 +28,12 @@ input {
   outline: none;
   border: none;
   margin: 0.5rem;
+}
+
+input + label {
+  display: inline-flex;
+  margin-right: 20px;
+  margin-left: 5px;
 }
 
 .formControl {
