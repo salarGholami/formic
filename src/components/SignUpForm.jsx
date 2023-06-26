@@ -2,6 +2,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { object, ref, string } from "yup";
+import Input from "./common/input";
 
 // 1.mange state
 const initialValues = {
@@ -57,66 +58,22 @@ const SignUpForm = () => {
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
-        <div className="formControl">
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            type="text"
-            {...formik.getFieldProps("name")}
-            name="name"
-          />
-          {formik.errors.name && formik.touched.name && (
-            <div className="error">{formik.errors.name}</div>
-          )}
-        </div>
-        <div className="formControl">
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            {...formik.getFieldProps("email")}
-            name="email"
-          />
-          {formik.errors.email && formik.touched.email && (
-            <div className="error">{formik.errors.email}</div>
-          )}
-        </div>
-        <div className="formControl">
-          <label htmlFor="phoneNumber">phone Number</label>
-          <input
-            id="phoneNumber"
-            type="number"
-            {...formik.getFieldProps("phoneNumber")}
-            name="phoneNumber"
-          />
-          {formik.errors.phoneNumber && formik.touched.phoneNumber && (
-            <div className="error">{formik.errors.phoneNumber}</div>
-          )}
-        </div>
-        <div className="formControl">
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="text"
-            {...formik.getFieldProps("password")}
-            name="password"
-          />
-          {formik.errors.password && formik.touched.password && (
-            <div className="error">{formik.errors.password}</div>
-          )}
-        </div>
-        <div className="formControl">
-          <label htmlFor="passwordConfirm">Password Confirm</label>
-          <input
-            id="passwordConfirm"
-            type="text"
-            {...formik.getFieldProps("passwordConfirm")}
-            name="passwordConfirm"
-          />
-          {formik.errors.passwordConfirm && formik.touched.passwordConfirm && (
-            <div className="error">{formik.errors.passwordConfirm}</div>
-          )}
-        </div>
+        <Input formik={formik} name="name" label="name" />
+        <Input formik={formik} name="email" label="email" type="email" />
+        <Input formik={formik} name="phoneNumber" label="phoneNumber" type="number" />
+        <Input
+          formik={formik}
+          name="password"
+          label="password"
+          type="password"
+        />
+        <Input
+          formik={formik}
+          name="passwordConfirm"
+          label="passwordConfirm"
+          type="password"
+        />
+
         <div className="formControl">
           <p>gender :</p>
           <input
