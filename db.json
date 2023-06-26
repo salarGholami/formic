@@ -1,5 +1,5 @@
 {
-  "posts": [
+  "users": [
     {
       "id": "1",
       "name": "salar",
@@ -8,15 +8,6 @@
       "password": "13730912@Salar",
       "passwordConfirm": "13730912@Salar",
       "gender": "0"
-    },
-    {
-      "id": "2",
-      "name": "sima",
-      "email": "simagholami021@gmail.com",
-      "phoneNumber": "09388938979",
-      "password": "13730912@sedaSima",
-      "passwordConfirm": "13730912@sedaSima",
-      "gender": "1"
     }
   ]
 }
