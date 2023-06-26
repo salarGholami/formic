@@ -2,7 +2,8 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { object, ref, string } from "yup";
-import Input from "./common/input";
+import Input from "./common/Input";
+import InputRadio from "./common/InputRadio";
 
 // 1.mange state
 const initialValues = {
@@ -37,6 +38,11 @@ const validationSchema = object({
   gender: string().required("Gender is required"),
 });
 
+const radioOption = [
+  { label: "male", value: "0" },
+  { label: "female", value: "1" },
+];
+
 const SignUpForm = () => {
   const [formValues, setFormValues] = useState(null);
 
@@ -60,7 +66,12 @@ const SignUpForm = () => {
       <form onSubmit={formik.handleSubmit}>
         <Input formik={formik} name="name" label="name" />
         <Input formik={formik} name="email" label="email" type="email" />
-        <Input formik={formik} name="phoneNumber" label="phoneNumber" type="number" />
+        <Input
+          formik={formik}
+          name="phoneNumber"
+          label="phoneNumber"
+          type="number"
+        />
         <Input
           formik={formik}
           name="password"
@@ -73,32 +84,8 @@ const SignUpForm = () => {
           label="passwordConfirm"
           type="password"
         />
+        <InputRadio formik={formik} radioOption={radioOption} name="gender" />
 
-        <div className="formControl">
-          <p>gender :</p>
-          <input
-            type="radio"
-            name="gender"
-            id="0"
-            value="0"
-            onChange={formik.handleChange}
-            checked={formik.values.gender === "0"}
-          />
-          <label htmlFor="0">male</label>
-
-          <input
-            type="radio"
-            name="gender"
-            id="1"
-            value="1"
-            onChange={formik.handleChange}
-            checked={formik.values.gender === "1"}
-          />
-          <label htmlFor="1">female</label>
-          {formik.errors.gender && formik.touched.gender && (
-            <div className="error">{formik.errors.gender}</div>
-          )}
-        </div>
         <button type="submit" disabled={!formik.isValid}>
           submit
         </button>
