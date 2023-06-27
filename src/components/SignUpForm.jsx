@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { object, ref, string } from "yup";
+import { array, object, ref, string } from "yup";
 import Input from "./common/Input";
 import InputRadio from "./common/InputRadio";
 import Select from "./common/SelectNationality";
+import CheckBox from "./common/CheckBox";
+
 
 // 1.mange state
 const initialValues = {
@@ -15,6 +17,7 @@ const initialValues = {
   passwordConfirm: "",
   gender: "",
   nationality: "",
+  checkBox: [],
 };
 
 // 2.handler submiission
@@ -39,11 +42,20 @@ const validationSchema = object({
     .oneOf([ref("password")], "Passwords does not match"),
   gender: string().required("Gender is required"),
   nationality: string().required("select nationality !"),
+  checkBox: array()
+    .min(1, "at least select one")
+    .required("Check Box is required"),
 });
 
 const radioOption = [
   { label: "male", value: "0" },
   { label: "female", value: "1" },
+];
+
+const checkBoxOption = [
+  { label: "react", value: "react" },
+  { label: "vue", value: "vue" },
+  { label: "angular", value: "angular" },
 ];
 
 const selectOption = [
@@ -101,6 +113,12 @@ const SignUpForm = () => {
           selectOption={selectOption}
           name="nationality"
           formik={formik}
+        />
+
+        <CheckBox
+          formik={formik}
+          checkBoxOption={checkBoxOption}
+          name="checkBox"
         />
 
         <button type="submit" disabled={!formik.isValid}>
