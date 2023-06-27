@@ -9,7 +9,8 @@
       "passwordConfirm": "13730912@Salar",
       "gender": "0",
       "nationality": "US",
-      "checkBox": ["react"]
+      "checkBox": ["react"],
+      "terms": false
     }
   ]
 }

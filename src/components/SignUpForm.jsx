@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { array, object, ref, string } from "yup";
+import { array, boolean, object, ref, string } from "yup";
 import Input from "./common/Input";
 import InputRadio from "./common/InputRadio";
 import Select from "./common/SelectNationality";
 import CheckBox from "./common/CheckBox";
-
+import Terms from "./common/Terms";
 
 // 1.mange state
 const initialValues = {
@@ -18,6 +18,7 @@ const initialValues = {
   gender: "",
   nationality: "",
   checkBox: [],
+  terms: false,
 };
 
 // 2.handler submiission
@@ -45,6 +46,9 @@ const validationSchema = object({
   checkBox: array()
     .min(1, "at least select one")
     .required("Check Box is required"),
+  terms: boolean()
+    .oneOf([true], "You must accept the terms and conditions")
+    .required("the terms and conditions must be accepted"),
 });
 
 const radioOption = [
@@ -120,6 +124,8 @@ const SignUpForm = () => {
           checkBoxOption={checkBoxOption}
           name="checkBox"
         />
+
+        <Terms formik={formik} />
 
         <button type="submit" disabled={!formik.isValid}>
           submit
