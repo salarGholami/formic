@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { object, ref, string } from "yup";
 import Input from "./common/Input";
 import InputRadio from "./common/InputRadio";
+import Select from "./common/SelectNationality";
 
 // 1.mange state
 const initialValues = {
@@ -13,6 +14,7 @@ const initialValues = {
   password: "",
   passwordConfirm: "",
   gender: "",
+  nationality: "",
 };
 
 // 2.handler submiission
@@ -36,11 +38,20 @@ const validationSchema = object({
     .required("Password is requierd")
     .oneOf([ref("password")], "Passwords does not match"),
   gender: string().required("Gender is required"),
+  nationality: string().required("select nationality !"),
 });
 
 const radioOption = [
   { label: "male", value: "0" },
   { label: "female", value: "1" },
+];
+
+const selectOption = [
+  { label: "select nationality", value: "" },
+  { label: "Iran", value: "IR" },
+  { label: "Germany", value: "GER" },
+  { label: "USA", value: "US" },
+  { label: "France", value: "FAR" },
 ];
 
 const SignUpForm = () => {
@@ -85,6 +96,12 @@ const SignUpForm = () => {
           type="password"
         />
         <InputRadio formik={formik} radioOption={radioOption} name="gender" />
+
+        <Select
+          selectOption={selectOption}
+          name="nationality"
+          formik={formik}
+        />
 
         <button type="submit" disabled={!formik.isValid}>
           submit

@@ -10,6 +10,28 @@ label {
   font-weight: 800;
 }
 
+select {
+  width: 400px;
+  padding: 13px 22px;
+  display: block;
+  background: linear-gradient(
+      -135.8deg,
+      rgba(26, 26, 29, 0.761) 27.1%,
+      rgba(111, 34, 49, 0.332) 77.5%
+    )
+    no-repeat;
+  color: #dcdcdc;
+  border-radius: 4px;
+  /* appearance: none; */
+  outline: none;
+  border: none;
+  margin: 0.5rem;
+}
+
+option {
+  color: black;
+}
+
 input[type="text"],
 input[type="number"],
 input[type="email"],
