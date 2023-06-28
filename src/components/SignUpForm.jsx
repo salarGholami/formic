@@ -22,7 +22,12 @@ const initialValues = {
 };
 
 // 2.handler submiission
-const onSubmit = (values) => console.log(values);
+const onSubmit = (values) => {
+  axios
+    .post("http://localhost:3001/users", values)
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err));
+};
 
 // 3.validate
 const validationSchema = object({
